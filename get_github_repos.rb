@@ -3,7 +3,7 @@ require './src/result.rb'
 require './src/word_counter.rb'
 
 client = Octokit::Client.new \
-  access_token: '98f9b575b9120cce42ee5654c7812723dc459516'
+  access_token: ''
 
 last_id = 999 # for debugging purposes
 while last_id < 1000

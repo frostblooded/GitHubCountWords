@@ -20,7 +20,7 @@ loop do
     `git clone #{repo.html_url} data/#{repo.name} --depth 1 --single-branch --quiet`
   end
 
-  last_id = repos.last.id
+  last_id += repos_to_download
   puts # new line
   puts 'Download complete! Counting words...'
   files = Dir['data/**/*'].select { |f| File.file? f }
@@ -37,13 +37,13 @@ loop do
   end
 
   res_file = '{}'
-  if File.exists? 'results.json'
+  if File.exist? 'results.json'
     res_file = File.read('results.json')
     res_file = JSON.parse(res_file)
     res.word_counts.merge! res_file['words'].to_h { |_, oldval, newval| newval + oldval }
   end
 
-  res.word_counts = res.word_counts.sort_by { |word, count| [-count, word] }   
+  res.word_counts = res.word_counts.sort_by { |word, count| [-count, word] }
 
   File.open('results.json', 'w') do |result_file|
     result_file << res.to_json

@@ -3,11 +3,6 @@ require 'fileutils'
 require './src/result.rb'
 require './src/word_counter.rb'
 
-def process_files(files)
-end
-
-starting_time = Time.now
-
 client = Octokit::Client.new \
   access_token: ''
 

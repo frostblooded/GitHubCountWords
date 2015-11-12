@@ -1,34 +1,3 @@
-require 'json'
-require 'rexml/document'
-
-@input_file = ARGV[0]
-@output_format = ARGV[1]
-
-# Processes and extracts words from text
-class WordCounter
-  private
-
-  def parse(string)
-    result = Result.new
-    result.marks_count = string.scan(/[[,.!?:;"()\[\]]]/).count
-    words = string.downcase.gsub(/[^\w]/, ' ').split(' ').reject(&:empty?)
-
-    words.each do |word|
-      result.word_counts[word] += 1
-    end
-
-    result.word_counts = result.word_counts.sort_by { |word, count| [-count, word] }
-    result
-  end
-
-  public
-
-  def parse_file(filename)
-    text = File.read(filename).encode('UTF-8', 'UTF-8', invalid: :replace)
-    parse text
-  end
-end
-
 # Represents the result of counting words
 class Result
   private

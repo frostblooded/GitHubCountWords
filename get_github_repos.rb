@@ -1,10 +1,11 @@
 require 'octokit'
-require_relative 'count_words'
+require './src/result.rb'
+require './src/word_counter.rb'
 
 client = Octokit::Client.new \
-  access_token: 'ACCESS_TOKEN'
+  access_token: '98f9b575b9120cce42ee5654c7812723dc459516'
 
-last_id = 999
+last_id = 999 # for debugging purposes
 while last_id < 1000
   repos = client.all_repositories(since: last_id)
   last_id = repos.last.id
@@ -25,6 +26,7 @@ while last_id < 1000
     word_counter = WordCounter.new
     tmp_res = word_counter.parse_file file
     res.word_counts.merge!(tmp_res.word_counts.to_h) { |_, oldval, newval| newval + oldval }
+    res.marks_count += tmp_res.marks_count
     checked_file += 1
   end
 

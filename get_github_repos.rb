@@ -1,10 +1,10 @@
 require 'octokit'
 require 'fileutils'
-require './src/result.rb'
-require './src/word_counter.rb'
+require_relative 'src/result.rb'
+require_relative 'src/word_counter.rb'
 
 client = Octokit::Client.new \
-  access_token: ''
+  access_token: 'b4e8c7edb8345e8cbbf7e39399c4ab18e6426afd'
 
 starting_id = (rand * 1_000_000).round
 last_id = starting_id

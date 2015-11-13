@@ -1,3 +1,5 @@
+require_relative 'result.rb'
+
 # Processes and extracts words from text
 class WordCounter
   private

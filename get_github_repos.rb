@@ -40,7 +40,7 @@ loop do
   if File.exist? 'results.json'
     res_file = File.read('results.json')
     res_file = JSON.parse(res_file)
-    res.word_counts.merge! res_file['words'].to_h { |_, oldval, newval| newval + oldval }
+    res.word_counts.merge!(res_file['words'].to_h) { |_, oldval, newval| newval + oldval }
     res.marks_count += res_file['marks']
   end
 

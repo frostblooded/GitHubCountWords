@@ -6,7 +6,7 @@ class GitHubCloner
 
   def self.download_repos(dir, count)
     client = Octokit::Client.new \
-      access_token: ''
+      access_token: '5981e505bd2008c278e01e1acd9701f79e395d6f'
 
     starting_id = (rand * ALL_GITHUB_REPOS).round
     puts "Starting download with repo #{starting_id}"
